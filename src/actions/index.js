@@ -13,7 +13,7 @@ export const GET_SCHEDULE = 'GET_SCHEDULE';
 
 export const getWeather = (c, o) => {
   return (dispatch => {
-    axios.get(`http://api.openweathermap.org/data/2.5/weather?id=${c}&APPID=${o}`)
+    axios.get(`http://api.openweathermap.org/data/2.5/weather?id=${c}&lang=ru&APPID=${o}`)
     .then((response) => {
       dispatch({
         type: GET_CURRENT_WEATHER,
@@ -26,7 +26,7 @@ export const getWeather = (c, o) => {
 
 export const getCurrentWeather = (c, o) => {
   return (dispatch => {
-    axios.get(`http://api.openweathermap.org/data/2.5/forecast/daily?id=${c}&APPID=${o}`)
+    axios.get(`http://api.openweathermap.org/data/2.5/forecast?id=${c}&lang=ru&APPID=${o}`)
     .then((response) => {
       dispatch({
         type: GET_WEATHER,
@@ -85,19 +85,38 @@ export const getLocks = (h, p, c) => {
   });
 };
 
-
-export const getMessage = (t, p) => {
+export const getMessage = (token, projectId) => {
   return (dispatch => {
-    axios.get(`https://beta.todoist.com/API/v8/tasks?token=${t}`).then((response) => {
-      const messages = _.filter(response.data, {project_id: p});
+    axios.get(`https://api.todoist.com/rest/v2/tasks?project_id=${projectId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }).then((response) => {
+      // Обработка данных из ответа
+      const messages = response.data;
 
       dispatch({
         type: GET_MESSAGE,
         payload: messages
       });
+    }).catch(error => {
+      // Обработка ошибок
+      console.error('Error fetching tasks:', error);
     });
   });
 };
+// export const getMessage = (t, p) => {
+//   return (dispatch => {
+//     axios.get(`https://beta.todoist.com/API/v8/tasks?token=${t}`).then((response) => {
+//       const messages = _.filter(response.data, {project_id: p});
+
+//       dispatch({
+//         type: GET_MESSAGE,
+//         payload: messages
+//       });
+//     });
+//   });
+// };
 
 
 export const getLights = (a) => {

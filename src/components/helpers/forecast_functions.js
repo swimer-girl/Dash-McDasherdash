@@ -1,5 +1,5 @@
 import React from 'react';
-import kelvinToFahrenheit from 'kelvin-to-fahrenheit';
+import kelvinToCelsius from 'kelvin-to-celsius';
 import _ from 'lodash';
 import moment from 'moment';
 
@@ -21,14 +21,14 @@ export const Days = (props) => {
 
 export const Day = (e) => {
   const className = `wi wi-${IconMap[e.weather[0].id.toString()].icon}`;
-  let min = _.split(kelvinToFahrenheit(e.temp.min), '.');
-  let max = _.split(kelvinToFahrenheit(e.temp.max), '.');
+  let min = _.split(kelvinToCelsius(e.main.temp_min).toFixed(2), '.');
+  let max = _.split(kelvinToCelsius(e.main.temp_max).toFixed(2), '.');
   return (
     <div className="weather-day">
       <div className="weather-day-of-week">{moment(e.dt * 1000).format('dddd')}</div>
       <div className="weather-icon"><i className={className}></i></div>
-      <div className="weather-temprange">{max[0]}<i className="wi wi-fahrenheit"></i>  {min[0]}<i className="wi wi-fahrenheit"></i></div>
-      <div className="weather-main">{e.weather[0].main}</div>
+      <div className="weather-temprange">{max[0]}<i className="wi wi-celsius"></i>  {min[0]}<i className="wi wi-celsius"></i></div>
+      <div className="weather-main">{e.weather[0].description}</div>
     </div>
   )
 };
@@ -74,7 +74,8 @@ export const Today = (props) => {
   const currentWeather = props.CurrentWeather;
 
   const className = `wi wi-${IconMap[currentWeather.weather[0].id.toString()].icon}`;
-  let temp = _.split(kelvinToFahrenheit(currentWeather.main.temp), '.');
+  let temp = _.split(kelvinToCelsius(currentWeather.main.temp).toFixed(2), '.');
+  let feelsTemp = _.split(kelvinToCelsius(currentWeather.main.feels_like).toFixed(2), '.');
   const sunrise =  new Date(currentWeather.sys.sunrise * 1000);
   const sunset =  new Date(currentWeather.sys.sunset * 1000);
   const wind = _.split(currentWeather.wind.deg, '.');
@@ -83,39 +84,40 @@ export const Today = (props) => {
       <div className="current-weather-topline">
         <div className="current-weather-icon">
           <i className={className}></i>
-          <div className="current-weather-desc">{currentWeather.weather[0].main}</div>
+          <div className="current-weather-desc">{currentWeather.weather[0].description}</div>
         </div>
-        <div className="current-weather-temp">{temp[0]}<i className="wi wi-fahrenheit"></i></div>
+        <div className="current-weather-temp">{temp[0]}<i className="wi wi-celsius"></i></div>
+        <div className="current-weather-temp">{feelsTemp[0]}<i className="wi wi-celsius"></i></div>
       </div>
       <div>&nbsp;</div>
       <div className="current-weather-bottomline">
         <div className="current-weather-sunrise current-weather-bottom-element">
-          <div>Sunrise:</div>
+          <div>Рассвет:</div>
           <div>&nbsp;</div>
           <div>{moment(sunrise).format('h:mm:ss a')} <i className="wi wi-sunrise"></i></div>
         </div>
         <div className="current-weather-sunset current-weather-bottom-element">
-          <div>Sunset:</div>
+          <div>Закат:</div>
           <div>&nbsp;</div>
           <div>{moment(sunset).format('h:mm:ss a')} <i className="wi wi-sunset"></i></div>
         </div>
         <div className="current-weather-humidity current-weather-bottom-element">
-          <div>Humidity:</div>
+          <div>Влажность:</div>
           <div>&nbsp;</div>
           <div>{currentWeather.main.humidity}% <i className="wi wi-humidity"></i></div>
         </div>
         <div className="current-weather-pressure current-weather-bottom-element">
-          <div>Pressure:</div>
+          <div>Давление:</div>
           <div>&nbsp;</div>
           <div>{currentWeather.main.pressure}mb <i className="wi wi-barometer"></i></div>
         </div>
         <div className="current-weather-speed current-weather-bottom-element">
-          <div>Wind Speed:</div>
+          <div>Скорость ветра:</div>
           <div>&nbsp;</div>
           <div>{currentWeather.wind.speed}mph  <i className="wi wi-strong-wind"></i></div>
         </div>
         <div className="current-weather-direction current-weather-bottom-element">
-          <div>Wind Direction:</div>
+          <div>Направление ветра:</div>
           <div>&nbsp;</div>
           <div>{wind[0]} <i className={WindDirection(wind[0])}></i></div>
         </div>

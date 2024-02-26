@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import Panel from '../panel';
 import moment from 'moment';
+import 'moment/locale/ru'; // Импортируем локаль для русского языка
 
 class Badge extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      currDate: `${moment().format('dddd')}, ${moment().format('MMMM Do YYYY')}`,
-      currTime: `${moment().format('h:mm A')}`
+      currDate: `${moment().format('dddd')}, ${moment().format('LL')}`,
+      currTime: `${moment().format('LT')}` // Изменил формат времени на LT
     }
 
     this._updateTime = this._updateTime.bind(this);
@@ -16,6 +17,7 @@ class Badge extends Component {
   }
 
   componentWillMount() {
+    moment.locale('ru'); // Устанавливаем русскую локаль
     this._updateTime();
   };
 
@@ -26,8 +28,8 @@ class Badge extends Component {
 
   _updateTime(){
     this.setState({
-      currDate: `${moment().format('dddd')}, ${moment().format('MMMM Do YYYY')}`,
-      currTime: `${moment().format('h:mm A')}`
+      currDate: `${moment().format('dddd')}, ${moment().format('LL')}`,
+      currTime: `${moment().format('LT')}` // Изменил формат времени на LT
     })
   };
 
@@ -41,8 +43,8 @@ class Badge extends Component {
       <Panel {...this.props}>
         <h1 id="site-title">{this.props.title}</h1>
         <div className="badge">
-          <h4>{moment().format('dddd')}, {moment().format('MMMM Do YYYY')}</h4>
-          <h2>{moment().format('h:mm A')}</h2>
+          <h4>{moment().format('dddd')}, {moment().format('LL')}</h4>
+          <h2>{moment().format('LT')}</h2> {/* Изменил формат времени на LT */}
         </div>
       </Panel>
     )

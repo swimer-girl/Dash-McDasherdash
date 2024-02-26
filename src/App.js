@@ -16,6 +16,7 @@ import Lights from './components/panel_types/lights';
 import MaslowState from './components/panel_types/maslow_state';
 import Scores from './components/panel_types/scores';
 import Calendar from './components/panel_types/calendar';
+import MyCalendar from './components/panel_types/calendarNew';
 
 
 class App extends Component {
@@ -35,7 +36,7 @@ class App extends Component {
           color="104F55"
           width={2}
           height={4}
-          title="5-Day Forecast"
+          title="5-дневный прогноз"
           cityCode={dashboard_config.open_weather_city_code}
           openWeatherMapAPIKey={dashboard_config.open_weather_map_api_key}
         />
@@ -44,7 +45,7 @@ class App extends Component {
           color="264653"
           width={3}
           height={2}
-          title="Weather"
+          title="Погода"
           cityCode={dashboard_config.open_weather_city_code}
           openWeatherMapAPIKey={dashboard_config.open_weather_map_api_key}
         />
@@ -53,29 +54,29 @@ class App extends Component {
           color="32746D"
           width={3}
           height={2}
-          title="Messages"
+          title="Todo list"
         />
 
-        <Lights
+        {/* <Lights
           color="173753"
           width={3}
           height={2}
           title="Lights"
-        />
+        /> */}
 
-        <IndoorClimate
+        {/* <IndoorClimate
           color="70A0AF"
           width={4}
           height={4}
           title="Indoor Climate"
-        />
+        /> */}
 
-        <Locks
+        {/* <Locks
           color="104F55"
           width={4}
           height={4}
           title="Locks"
-        />
+        /> */}
 
         <MaslowState
           color="32746D"
@@ -84,20 +85,26 @@ class App extends Component {
           title="Maslow State"
         />
 
+        {/* <MyCalendar
+          color="264653"
+          width={2}
+          height={4}
+          title="Tonight's Calendar"
+        /> */}
 
-                <Calendar
-                  color="264653"
-                  width={1}
-                  height={3}
-                  title="Tonight's Calendar"
-                />
+        <Calendar
+          color="264653"
+          width={2}
+          height={4}
+          title="Tonight's Calendar"
+        />
 
-        <Scores
+        {/* <Scores
           color="264653"
           width={1}
           height={3}
           title="Tonight's Games"
-        />
+        /> */}
       </div>
     );
   }
