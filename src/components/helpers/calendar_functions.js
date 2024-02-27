@@ -1,7 +1,7 @@
 // import axios from 'axios';
 
-// const CALENDAR_ID = 'db07259e947a3921fac11b0e6d337445d96ae809b8e1ffd94792649f0b52a770@group.calendar.google.com';
-// const API_KEY = 'AIzaSyDgmDX-BBqYw8aAazWpKqPthSdXafybIYk';
+// const CALENDAR_ID = ';
+// const API_KEY = '';
 // let url = `https://www.googleapis.com/calendar/v3/calendars/${CALENDAR_ID}/events?key=${API_KEY}`
 
 
@@ -22,8 +22,8 @@
 // }
 import axios from 'axios';
 
-const CALENDAR_ID = 'db07259e947a3921fac11b0e6d337445d96ae809b8e1ffd94792649f0b52a770@group.calendar.google.com';
-const API_KEY = 'AIzaSyDgmDX-BBqYw8aAazWpKqPthSdXafybIYk';
+const CALENDAR_ID = '';
+const API_KEY = '';
 const url = `https://www.googleapis.com/calendar/v3/calendars/${CALENDAR_ID}/events?key=${API_KEY}`;
 
 export function getEvents(callback) {
