@@ -3,18 +3,18 @@ import React, { Component } from 'react';
 
 import { dashboard_config } from './dashboard_config';
 
-// import Panel from './components/panel';
+//import Panel from './components/panel';
 
 import Badge from './components/panel_types/badge';
 import Forecast from './components/panel_types/forecast';
 import CurrentWeather from './components/panel_types/current_weather';
 // import Camera from './components/panel_types/camera';
-import IndoorClimate from './components/panel_types/indoor_climate';
-import Locks from './components/panel_types/locks';
+//import IndoorClimate from './components/panel_types/indoor_climate';
+//import Locks from './components/panel_types/locks';
 import Message from './components/panel_types/message';
-import Lights from './components/panel_types/lights';
+//import Lights from './components/panel_types/lights';
 import MaslowState from './components/panel_types/maslow_state';
-import Scores from './components/panel_types/scores';
+//import Scores from './components/panel_types/scores';
 import Calendar from './components/panel_types/calendar';
 import MyCalendar from './components/panel_types/calendarNew';
 
@@ -85,12 +85,12 @@ class App extends Component {
           title="Maslow State"
         />
 
-        {/* <MyCalendar
+        <MyCalendar
           color="264653"
           width={2}
           height={4}
           title="Tonight's Calendar"
-        /> */}
+        />
 
         <Calendar
           color="264653"
